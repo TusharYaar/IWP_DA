@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      #container {
+        margin: 20px auto;
+        max-width: 400px;
+        padding: 20px;
+        border: 1px solid black;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      input {
+        margin: 5px 0px 10px 0px;
+        width: 100%;
+        padding: 5px;
+        border: 1px solid black;
+      }
+
+      #submitBtn {
+        margin: 10px 0px;
+        width: 100%;
+        padding: 5px;
+        border: 1px solid black;
+        background-color: #4caf50;
+        color: white;
+        font-weight: bold;
+      }
+
+      #submitBtn:hover {
+        background-color: #43a047;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="container">
+      <label for="email">Email:</label>
+      <input type="text" name="email" id="email" />
+      <label for="password">Password:</label>
+      <input type="password" name="password" id="password" />
+      <button id="submitBtn">Submit</button>
+    </div>
+    <script src="./jquery.js"></script>
+    <script>
+      $("#submitBtn").click(function () {
+        var data = {
+          email: $("#email").val(),
+          password: $("#password").val(),
+        };
+
+        $.ajax({
+          type: "POST",
+          url: "../login.php",
+          data: {
+            email: data.email,
+            password: data.password,
+          },
+        }).done(function (res) {
+          const data = JSON.parse(res);
+          if (data.type == "admin") window.location.replace("./admin.html");
+          else if (data.type == "default") window.location.replace("./home.html");
+          else alert("Invalid credentials");
+        });
+      });
+    </script>
+  </body>
+</html>
