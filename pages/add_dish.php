@@ -8,7 +8,7 @@
         <input type="description" name="description" id="description" placeholder="Enter description" />
 
         <label for="price">Price</label>
-        <input type="number" step="0.01" id="price" placeholder="Enter price" min="0" />
+        <input type="number" step="1" id="price" placeholder="Enter price" min="0" />
 
         <label for="category">Category</label>
         <select name="category" id="category">
