@@ -26,7 +26,7 @@ $("#submitBtn").click(function() {
     }
     $.ajax({
             type: "POST",
-            url: "../signup.php",
+            url: "../signup_submit.php",
             data: {
                 email: $("#email").val(),
                 password: $("#password").val(),
