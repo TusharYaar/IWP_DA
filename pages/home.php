@@ -1,38 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php include 'header.php'; ?>
+<div id="container">
+    <p>The best place to order food.</p>
+    <div id="searchBox">
+        <input type="text" name="search" placeholder="Search..." id="searchQuery" />
+        <button id="searchBtn">Search</button>
+    </div>
+    <div id="dishesContainer">
 
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home</title>
-</head>
-
-<body>
-    <?php if(isset($_SESSION)) header("Location: login.html"); ?>
-    <?php include 'header.php'; ?>
-    <div>
-        <h1>Home</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, quisquam.</p>
-        <div id="searchBox">
-            <input type="text" name="search" placeholder="Search..." />
-            <button id="searchBtn">Search</button>
-        </div>
     </div>
 
-    <script src="./jquery.js"></script>
-    <script>
-    // Search button
-    $("#searchBtn").click(function() {
-        console.log("Searching...");
-        var search = document.getElementById("searchBox").value;
-        $.getJSON("../search.php?search=" + search, function(data) {
-            console.log(data);
+</div>
+<script src="./jquery.js"></script>
+<script>
+// Search button
+
+function searchDish() {
+    var search = $("#searchQuery").val() || "";
+    $.get("../search.php?search=" + search, function(data) {
+        data = JSON.parse(data);
+        if (!data.success) return alert(data.message);
+        $("#dishesContainer").html("");
+        console.log(data.dishes);
+        data.dishes.forEach(function(dish) {
+            $("#dishesContainer").append(`
+                <div id="dish">
+                    <h3>${dish.name}</h3>
+                    <h4> ${dish.category}</h4>
+                    <p>${dish.description}</p>
+                    <p>Price: ${dish.price}</p>
+                    <button class="addToCart" data-id="${dish.id}">Add to cart</button>
+                </div>
+            `);
         });
     });
-    </script>
-    <?php include 'footer.php'; ?>
+}
+$("#searchBtn").click(searchDish);
 
-</body>
-
-</html>
+searchDish();
+</script>
+<?php include 'footer.php'; ?>

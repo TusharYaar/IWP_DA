@@ -10,13 +10,15 @@
         $data["firstname"] = $row['firstname'];
         $data["lastname"] = $row['lastname'];
         $data["type"]= $row['type'];
+        $data["success"] = true;
         session_start();
         $_SESSION['email'] = $data["email"];
         $_SESSION['type'] = $data["type"];
-        echo json_encode($data);
-
-    }
-   } else {
-    echo "0 results";
-   }
+        $_SESSION['firstname'] = $data["firstname"];  
+        }
+    } else {
+    $data["success"] = false;
+    $data["message"] = "Invalid credentials";
+}
+echo json_encode($data);
 ?>
