@@ -26,6 +26,14 @@
   align-items: flex-start;
 }
 
+#message {
+  text-align: center;
+  display: block;
+  visibility: hidden;
+  margin: 20px auto;
+  font-size: 20px;
+}
+
 input,
 select {
   margin: 5px 0px 10px 0px;

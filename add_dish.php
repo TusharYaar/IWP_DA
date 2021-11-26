@@ -10,10 +10,13 @@
     $sql = "INSERT INTO dishes (name, description, price, category) VALUES ('$name', '$description', '$price', '$category')";
 
     if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
+        $data["success"] = true;
+        $data["message"] = "Dish added successfully";
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        $data["success"] = false;
+        $data["message"] = "Error: " . $sql . "<br>" . $conn->error;
     }
+    echo json_encode($data);
 
 
 ?>

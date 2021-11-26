@@ -1,6 +1,8 @@
 <?php include 'header.php'; ?>
 <div id="container">
-    <div>
+    <h1 id="pageHeading">Add Dish</h1>
+    <p id="message">Message</p>
+    <div id="formContainer">
         <label for="name">Name</label>
         <input type="name" name="name" id="name" placeholder="Enter name" />
 
@@ -23,10 +25,7 @@
 <script src="./jquery.js"></script>
 <script>
 $("#submitBtn").click(function() {
-    if ($("#password").val() !== $("#confirmpassword").val()) {
-        alert("Passwords do not match");
-        return;
-    }
+    console.log("called");
     $.ajax({
             type: "POST",
             url: "../add_dish.php",
@@ -38,14 +37,25 @@ $("#submitBtn").click(function() {
             },
         })
         .done(function(res) {
-            console.log(res);
-            // const data = JSON.parse(res);
-            // if (data.success) window.location.replace("./home.html");
-            // else alert(data.message);
+            res = JSON.parse(res);
+            if (res.success) {
+                $("#message").text(res.message);
+                $("#message").css("color", "green");
+
+                $("#name").val("");
+                $("#description").val("");
+                $("#price").val("");
+            } else {
+                $("#message").text(res.message);
+                $("#message").css("color", "red");
+            }
+            $("#message").css("visibility", "visible");
+
+
         })
         .fail(function(err) {
             alert("Error: " + err.statusText);
         });
 });
 </script>
-<?php include 'header.php'; ?>
+<?php include 'footer.php'; ?>
