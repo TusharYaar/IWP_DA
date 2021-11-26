@@ -6,9 +6,19 @@
 
 #navbar {
   background-color: #e09f3e;
-  height: 60px;
   width: 100%;
+}
+#topNavbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+
   padding: 10px;
+}
+#bottomNavbar {
+  padding: 10px;
+  background-color: #bd7913;
 }
 
 #container {

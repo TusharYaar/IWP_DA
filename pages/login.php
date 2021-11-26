@@ -24,9 +24,7 @@
                 password: data.password,
             },
         }).done(function(res) {
-            console.log(res);
             const data = JSON.parse(res);
-            if
             if (data.success) window.location.replace("./home.php");
             else alert("Invalid credentials");
         });
