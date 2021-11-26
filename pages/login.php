@@ -27,8 +27,7 @@
             console.log(res);
             const data = JSON.parse(res);
             if
-            if (data.success && data.type == "admin") window.location.replace("./add_dish.php");
-            else if (data.success && data.type == "default") window.location.replace("./home.php");
+            if (data.success) window.location.replace("./home.php");
             else alert("Invalid credentials");
         });
     });
