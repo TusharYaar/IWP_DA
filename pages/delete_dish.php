@@ -1,6 +1,6 @@
 <?php include 'header.php'; ?>
 <div id="container">
-    <p>The best place to order food.</p>
+    <h1 id="pageHeading">Delete dish</h1>
     <div id="searchBox">
         <input type="text" name="search" placeholder="Search..." id="searchQuery" />
         <button id="searchBtn">Search</button>
@@ -27,10 +27,25 @@ function searchDish() {
                     <h4> ${dish.category}</h4>
                     <p>${dish.description}</p>
                     <p>Price: ${dish.price}</p>
-                    <button class="addToCart" data-id="${dish.id}">Add to cart</button>
+                    <button class="deleteBtn" data-id="${dish.id}">Delete dish</button>
                 </div>
             `);
         });
+        // console.log($(".deleteBtn"))
+        $(".deleteBtn").click(function() {
+            var id = $(this).data("id");
+            let dish = $(this).parent();
+            $.ajax({
+                type: "GET",
+                url: `../delete_dish_submit.php?id=${id}`,
+                success: function(data) {
+                    data = JSON.parse(data);
+                    if (!data.success) return alert(data.message);
+                    dish.remove();
+                }
+            });
+        });
+        //////////////////////////////
     });
 }
 $("#searchBtn").click(searchDish);
