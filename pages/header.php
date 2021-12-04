@@ -25,6 +25,9 @@
         <div id="bottomNavbar">
             <div id="links">
                 <a href="home.php">Home</a>
+                <?php if (isset($_SESSION["firstname"])) {
+                echo "<a href='cart.php'>Cart</a>";
+            } ?>
                 <?php if (isset($_SESSION["firstname"]) && $_SESSION['type'] == "admin") {
             echo "<a href='add_dish.php'>Add Dish</a>
             <a href='update_dish.php'>Update Dish</a>
