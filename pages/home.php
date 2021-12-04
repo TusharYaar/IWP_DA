@@ -16,7 +16,7 @@
 
 function searchDish() {
     var search = $("#searchQuery").val() || "";
-    $.get("../search.php?search=" + search, function(data) {
+    $.get("../search_submit.php?search=" + search, function(data) {
         data = JSON.parse(data);
         if (!data.success) return alert(data.message);
         $("#dishesContainer").html("");

@@ -31,7 +31,6 @@ function searchDish() {
                 </div>
             `);
         });
-        // console.log($(".deleteBtn"))
         $(".deleteBtn").click(function() {
             var id = $(this).data("id");
             let dish = $(this).parent();
@@ -45,7 +44,6 @@ function searchDish() {
                 }
             });
         });
-        //////////////////////////////
     });
 }
 $("#searchBtn").click(searchDish);

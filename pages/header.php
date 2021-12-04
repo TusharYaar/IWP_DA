@@ -28,6 +28,19 @@
         } else {
             echo "<a href='login.php'>Login</a> <a href='signup.php'>Signup</a>";
         } ?>
+            <button id="logout">Logout</button>
 
         </div>
     </div>
+    <script src="./jquery.js"></script>
+    <script>
+    $("#logout").click(function() {
+        $.ajax({
+            type: "GET",
+            url: "../logout_submit.php",
+            success: function(result) {
+                window.location.href = "home.php";
+            }
+        });
+    });
+    </script>

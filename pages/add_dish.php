@@ -28,7 +28,7 @@ $("#submitBtn").click(function() {
     console.log("called");
     $.ajax({
             type: "POST",
-            url: "../add_dish.php",
+            url: "../add_dish_submit.php",
             data: {
                 name: $("#name").val(),
                 description: $("#description").val(),
