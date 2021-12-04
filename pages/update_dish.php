@@ -49,7 +49,7 @@ $("#submitBtn").click(function() {
             alert("Error: " + err.statusText);
         });
 });
-$.get("../search.php?search=", function(data) {
+$.get("../search_submit.php?search=", function(data) {
     allDishes = JSON.parse(data).dishes;
     allDishes.forEach(function(dish) {
         $("#allDishes").append(`<option value="${dish.id}">${dish.name}</option>`);

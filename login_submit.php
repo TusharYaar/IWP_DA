@@ -14,7 +14,8 @@
         session_start();
         $_SESSION['email'] = $data["email"];
         $_SESSION['type'] = $data["type"];
-        $_SESSION['firstname'] = $data["firstname"];  
+        $_SESSION['firstname'] = $data["firstname"];
+        $_SESSION['cart'] = array();  
         }
     } else {
     $data["success"] = false;

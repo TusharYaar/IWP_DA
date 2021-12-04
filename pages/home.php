@@ -14,6 +14,30 @@
 <script>
 // Search button
 
+function addListener() {
+    $(".addToCart").click(function() {
+        var id = $(this).data("id");
+        console.log(id);
+        $.ajax({
+            type: "POST",
+            url: "../add_to_cart_submit.php",
+            data: {
+                id
+            },
+        }).done(
+
+            function(res) {
+                res = JSON.parse(res);
+                if (res.success) {
+                    alert("Added to cart");
+                } else {
+                    alert(res.message);
+                }
+            })
+    });
+};
+
+
 function searchDish() {
     var search = $("#searchQuery").val() || "";
     $.get("../search_submit.php?search=" + search, function(data) {
@@ -26,11 +50,13 @@ function searchDish() {
                     <h3>${dish.name}</h3>
                     <h4> ${dish.category}</h4>
                     <p>${dish.description}</p>
-                    <p>Price: ${dish.price}</p>
+                    <p>Price: Rs. ${dish.price}</p>
                     <button class="addToCart" data-id="${dish.id}">Add to cart</button>
                 </div>
             `);
         });
+
+        addListener();
     });
 }
 $("#searchBtn").click(searchDish);

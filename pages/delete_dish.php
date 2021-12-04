@@ -16,7 +16,7 @@
 
 function searchDish() {
     var search = $("#searchQuery").val() || "";
-    $.get("../search.php?search=" + search, function(data) {
+    $.get("../search_submit.php?search=" + search, function(data) {
         data = JSON.parse(data);
         if (!data.success) return alert(data.message);
         $("#dishesContainer").html("");
@@ -26,7 +26,7 @@ function searchDish() {
                     <h3>${dish.name}</h3>
                     <h4> ${dish.category}</h4>
                     <p>${dish.description}</p>
-                    <p>Price: ${dish.price}</p>
+                    <p>Price: Rs. ${dish.price}</p>
                     <button class="deleteBtn" data-id="${dish.id}">Delete dish</button>
                 </div>
             `);

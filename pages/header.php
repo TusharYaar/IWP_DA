@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles.css" type="text/css" />
     <title>19BCE0559 - IP DA</title>
 </head>
@@ -20,16 +23,20 @@
                 else { echo "<h4> Not LoggedIn </h4>"; }?>
         </div>
         <div id="bottomNavbar">
-            <a href="home.php">Home</a>
-            <?php if (isset($_SESSION["firstname"]) && $_SESSION['type'] == "admin") {
+            <div id="links">
+                <a href="home.php">Home</a>
+                <?php if (isset($_SESSION["firstname"]) && $_SESSION['type'] == "admin") {
             echo "<a href='add_dish.php'>Add Dish</a>
             <a href='update_dish.php'>Update Dish</a>
             <a href='delete_dish.php'>Delete Dish</a>";
         } else {
             echo "<a href='login.php'>Login</a> <a href='signup.php'>Signup</a>";
         } ?>
-            <button id="logout">Logout</button>
-
+            </div>
+            <?php if (isset($_SESSION["firstname"])) {
+            echo "<button id='logout'>Logout</button>";
+            }
+            ?>
         </div>
     </div>
     <script src="./jquery.js"></script>
