@@ -6,6 +6,7 @@
     }?>
 <diV id="container">
     <h1 id="pageHeading">Shopping Cart</h1>
+    <h3 id="total">Total :Rs. 3443</h3>
     <div id="cartContainer">
 
     </div>
@@ -15,13 +16,14 @@
 <script>
 function removeItem(id) {
     $.ajax({
-        url: 'cart_remove.php',
-        type: 'post',
+        url: '../cart_remove_submit.php',
+        type: 'POST',
         data: {
             id: id
         },
         success: function(response) {
-            $('#cart').html(response);
+            console.log(response);
+            getCart();
         }
     });
 }
@@ -38,8 +40,9 @@ function getCart() {
             }
         })
         arr = arr.filter(cart => cart.number);
-        console.log(arr);
+        let total = 0;
         arr.forEach(function(dish) {
+            total += dish.number * dish.price;
             $("#cartContainer").append(`
         <div id="dish">
         <h3>${dish.name}</h3>
@@ -47,10 +50,12 @@ function getCart() {
         <p>${dish.description}</p>
         <p>Price: Rs. ${dish.price}</p>
         <p>Quantity: ${dish.number}</p>
+        <button onclick="removeItem(${dish.id})" class="deleteBtn">Reduce 1 Quantity</button>
     </div>
 `);
         });
 
+        $("#total").html("Total :Rs. " + total);
     })
 }
 
