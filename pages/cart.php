@@ -8,7 +8,6 @@
     <h1 id="pageHeading">Shopping Cart</h1>
     <h3 id="total">Total :Rs. 3443</h3>
     <div id="cartContainer">
-
     </div>
 </div>
 

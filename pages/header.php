@@ -26,13 +26,13 @@
             <div id="links">
                 <a href="home.php">Home</a>
                 <?php if (isset($_SESSION["firstname"])) {
-                echo "<a href='cart.php'>Cart</a>";
+                echo "<a href='cart.php'>Cart</a> <a href='feedback.php'>Feedback</a>";
             } ?>
                 <?php if (isset($_SESSION["firstname"]) && $_SESSION['type'] == "admin") {
             echo "<a href='add_dish.php'>Add Dish</a>
             <a href='update_dish.php'>Update Dish</a>
             <a href='delete_dish.php'>Delete Dish</a>";
-        } else {
+        } else if (!isset($_SESSION["firstname"])) {
             echo "<a href='login.php'>Login</a> <a href='signup.php'>Signup</a>";
         } ?>
             </div>
