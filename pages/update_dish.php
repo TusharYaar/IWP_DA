@@ -43,7 +43,11 @@ $("#submitBtn").click(function() {
             },
         })
         .done(function(res) {
-            console.log(res);
+            res = JSON.parse(res);
+            if (res.success) {
+                alert("Dish updated successfully");
+            } else
+                alert("Error: " + res.message);
         })
         .fail(function(err) {
             alert("Error: " + err.statusText);
